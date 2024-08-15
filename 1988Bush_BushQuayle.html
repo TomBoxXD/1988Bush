@@ -44,8 +44,33 @@ endingPicker = (out, totv, aa, quickstats) => {
                 }
             }, 100);
         }
+        setMusic("https://files.catbox.moe/evnllh.mp3")
     return "<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>"
     }
+}
+
+setMusic = (url, override = false) => {
+  let aud;
+  if ($("#music_player")[0]) {
+	$("#music_player")[0].remove();
+  }
+  if (override && document.getElementById("endingAudio")) {
+	aud = document.getElementById("endingAudio");
+	aud.src = url;
+	aud.play();
+	return 0;
+  }
+  if (document.getElementById("endingAudio")) {
+	return 0;
+  }
+  aud = document.createElement("audio");
+  aud.id = "endingAudio";
+  aud.src = url;
+  aud.loop = true;
+  aud.autoplay = true;
+  document.body.appendChild(aud);
+  aud.play();
+  return 0;
 }
 
 campaignTrail_temp.multiple_endings=true
